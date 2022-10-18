@@ -24,6 +24,20 @@ TabFarm:Button("Change", function()
     game:GetService("ReplicatedStorage").AvatarEditorConnections.UpdateRPName:InvokeServer(name,description)
 end)
 
+TabFarm:Button("Hit good shots", function()
+        
+        ArgetnarLib:Notify("Script!", "Femboyy did this function")
+        
+    while true do
+local args = {
+    [1] = "Shoot",
+    [2] = "Good"
+}
+
+game:GetService("ReplicatedStorage").Activities.Events.Basketball:FireServer(unpack(args))
+wait()
+end
+end)
 
 
 
@@ -65,7 +79,7 @@ TabMisc:Button("Destroy", function()
     game.CoreGui.MangoHub:Destroy();
 end)
 local TabCredit = win:Tab("Credits")
-TabCredit:Label("Hub by Argetnar & Doku & Brinen")
+TabCredit:Label("Hub by Argetnar & Doku & Brinen & Femboyy")
 local LabelRef = TabCredit:Label("v1")
 wait(10)
 LabelRef:Refresh("v2")
