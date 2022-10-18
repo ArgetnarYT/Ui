@@ -115,4 +115,9 @@ end)
 end
 tp(274.477, 90.0895, -690.018); -- Change x,y,z to the coordinates you got
 end)
+local TabCredit = win:Tab("Credits")
+TabCredit:Label("Hub by Argetnar & Doku & Brinen")
+local LabelRef = TabCredit:Label("v1")
+wait(10)
+LabelRef:Refresh("v2")
 ArgetnarLib:Notify("Script", "The script has been loaded")
