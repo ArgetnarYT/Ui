@@ -305,5 +305,9 @@ end)
 TabMisc:Button("Destroy", function()
     game.CoreGui.MangoHub:Destroy();
 end)
-
+local TabCredit = win:Tab("Credits")
+TabCredit:Label("Hub by Argetnar & Doku & Brinen")
+local LabelRef = TabCredit:Label("v1")
+wait(10)
+LabelRef:Refresh("v2")
 ArgetnarLib:Notify("Script", "Was Loaded!")
