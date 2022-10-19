@@ -1,6 +1,6 @@
 local ArgetnarLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/ArgetnarYT/Library/main/ArgetnarLibrary.lua"))()
 local win = ArgetnarLib:Window("Argetnar Hub")
-ArgetnarLib:Notify("KeyHub", "Yuor in!")
+ArgetnarLib:Notify("KeyHub", "Your in!")
 local TabKey = win:Tab("Key")
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ArgetnarYT/scripts/main/Key.lua"))()
