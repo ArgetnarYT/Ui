@@ -1345,8 +1345,7 @@ end)
           getgenv().PromptGuioof:AddText("Fast Farm = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
       end
       fastoption = t
-end)
-      if t then
+	        if t then
           getgenv().PromptGuioof:AddText("AutoCollect Coins = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
       else
           getgenv().PromptGuioof:AddText("AutoCollect Coins = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
@@ -1362,7 +1361,7 @@ end)
   
       end)
   end
-
+end)
   TabBuy:Toggle("Auto Redeam Rank Rewards", function(t)
                   if t then
                   getgenv().PromptGuioof:AddText("Redeam Rank Rewards = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
@@ -1637,4 +1636,5 @@ TabCredit:Label("AutoFarm has been fixed, a patch is being developed")
 
 
 ArgetnarLib:Notify("Script", "Was Loaded!")
+wait(10)
 ArgetnarLib:Notify("Script", "AutoFarm has been fixed, a patch is being developed")
