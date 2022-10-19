@@ -128,16 +128,6 @@ local win = ArgetnarLib:Window("Argetnar Hub")
 
 ArgetnarLib:Notify("Script", "Loading.....")
 local TabFarm = win:Tab("Farm")
-
-TabFarm:Toggle("Auto Farm - Chest", function(t)
-          if t then
-              getgenv().PromptGuioof:AddText("Gem Farm = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("Gem Farm = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-          SettingsTable.GemFarm = t
-end)
-
 TabFarm:Toggle("Auto Farm - Gems", function(t)
           if t then
               getgenv().PromptGuioof:AddText("Gem Farm = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
@@ -146,69 +136,6 @@ TabFarm:Toggle("Auto Farm - Gems", function(t)
           end
           SettingsTable.GemFarm = t
 end)
-
-TabFarm:Dropdown("Select Chest", "chests", Chests, function(v)
-     SelectChest = v
-end)
-
-TabFarm:Toggle("Auto Farm - Selected Coin", function(t)
-           if t then
-              getgenv().PromptGuioof:AddText("Farm Selected Coin = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("Farm Selected Coin = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-          FarmSelectedCoin = t
-end)
-
-TabFarm:Toggle("Ultra Area Farm (risk of getting Kicked!)", function(t)
-          if t then
-              getgenv().PromptGuioof:AddText("Ultra Area Farm = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("Ultra Area Farm = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-          UltraAreaFarm = t
-end)
-TabFarm:Toggle("Auto Farm - Area", function(t)
-          if t then
-              getgenv().PromptGuioof:AddText("Area Farm = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("Area Farm = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-          SettingsTable.AreaFarm = t
-end)
-
-  
-         local Areas = {'All'}
-         for i,v in pairs(game:GetService("ReplicatedStorage").Game.Coins:GetDescendants()) do
-             if v.ClassName=="Folder" and v.Name ~= "Spawn" and v.Name ~= "Fantasy"and v.Name ~= "Tech"and v.Name ~= "Other"and v.Name ~= "Axolotl"and v.Name ~= "Pixel"then
-                 table.insert(Areas, v.Name)
-             end
-         end
-
-TabFarm:Dropdown("Select Area", "SelArea", Areas, function(t)
-    SelectedArea = t
-end)
-
-      local noiceCoin = {
-          'Coins',
-          'Crate',
-          'Large Coins',
-          'Safe',
-          'Small Chest',
-          'Present',
-          'Large Present',
-          'Tiny Coins',
-          'Vault',
-          'Chest',
-          'Tech Cube',
-          'Small Tech Cube',
-      }
-
-TabFarm:Dropdown("Select Coin", "hope", noiceCoin, function(t)
-    SecCoin2 = t
-end)
-
-
 TabFarm:Toggle("Auto Farm - Nearest", function(t)
           if t then
               getgenv().PromptGuioof:AddText("Farm Nearest = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
@@ -226,16 +153,6 @@ TabFarm:Toggle("Auto Farm - MultiTarget", function(t)
               getgenv().PromptGuioof:AddText("MultiTarget = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
           end
           SettingsTable.MultiTarget = t
-end)
-
-
-TabFarm:Toggle("Auto Farm - Coins by Health", function(t)
-          if t then
-              getgenv().PromptGuioof:AddText("Farm Coins by Health = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("Farm Coins by Health = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-          FarmCoinHealth = t
 end)
 
          spawn(function()
@@ -333,25 +250,6 @@ TabBuy:Toggle("No Egg Animation", function(value)
     end
 end)
 
-TabBuy:Toggle("World Hop", function(t)
-          if t then
-              getgenv().PromptGuioof:AddText("World Hop = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("World Hop = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-              worldhop = t
-         end)
-  
-         local WorldTable = {
-             'Pixel',
-             'Axolotl Ocean', 'Fantasy', 'Spawn', 'Tech'
-         }
-end)
-
-TabFarm:Dropdown("Select Worlds", "worldsel", WorldTable, function()
-
-end)
-
          spawn(function()
           while task.wait(.5) do
               if worldhop then
@@ -392,16 +290,11 @@ end)
 
   local DiamondsMasteryList = {"Diamonds", "Tiny Diamonds"}
   local MasteryIndex = {"All", "Coins Piles Mastery", "Crates Mastery", "Chests Mastery", "Presents Mastery", "Vaults & Safes Mastery", "Diamonds Mastery"}
-TabFarm:Dropdown("Mastery List", "Mast", MasteryIndex, function(v)
-   hewoUwU = v
-end)
 TabFarm:Toggle("Auto Farm Mastery", function(t)
-      if t then
-          getgenv().PromptGuioof:AddText("Auto Farm Mastery = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-      else
-          getgenv().PromptGuioof:AddText("Auto Farm Mastery = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-      end
-      Mastery = t
+    Mastery = t
+end)
+TabFarm:Dropdown("Mastery List", MasteryIndex, function(v)
+   hewoUwU = v
 end)
 
   spawn(function()
@@ -1620,7 +1513,7 @@ TabCredit:Label("Hub by Argetnar & Doku & Brinen")
 local LabelRef = TabCredit:Label("v1")
 wait(10)
 LabelRef:Refresh("v2")
-
+TabCredit:Label("AutoFarm has been fixed, a patch is being developed")
 
       for i,imaegg in pairs(game:GetService("ReplicatedStorage").Game.Coins:GetChildren()) do 
           for nu,hwe in pairs(imaegg:GetChildren()) do
@@ -1744,3 +1637,4 @@ LabelRef:Refresh("v2")
 
 
 ArgetnarLib:Notify("Script", "Was Loaded!")
+ArgetnarLib:Notify("Script", "AutoFarm has been fixed, a patch is being developed")
