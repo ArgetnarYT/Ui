@@ -128,21 +128,11 @@ local win = ArgetnarLib:Window("Argetnar Hub")
 
 ArgetnarLib:Notify("Script", "Loading.....")
 local TabFarm = win:Tab("Farm")
-TabFarm:Toggle("Auto Farm - Gems", function(t)
-          if t then
-              getgenv().PromptGuioof:AddText("Gem Farm = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("Gem Farm = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-          SettingsTable.GemFarm = t
+TabFarm:Toggle("Auto Farm - Gems", function(value)
+        getgenv().FarmGems = value
 end)
-TabFarm:Toggle("Auto Farm - Nearest", function(t)
-          if t then
-              getgenv().PromptGuioof:AddText("Farm Nearest = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("Farm Nearest = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-          SettingsTable.FarmNearest = t
+TabFarm:Toggle("Auto Farm - Nearest", function(value)
+getgenv().FarmNearest = value
 end)
 
 
@@ -181,6 +171,77 @@ end)
 
 
 
+ spawn(function()
+      while game:GetService("RunService").Heartbeat:wait() do
+          if getgenv().FarmNearest then
+              pcall(function()
+  
+                  function FarmCoins(CoinID, PetID)
+                      game.workspace['__THINGS']['__REMOTES']["join coin"]:InvokeServer({[1] = CoinID, [2] = {[1] = PetID}})
+                      game.workspace['__THINGS']['__REMOTES']["farm coin"]:FireServer({[1] = CoinID, [2] = PetID})                
+                  end
+  
+                  function FindPets()
+                      local Returntable = {}
+                          for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Frame.Main.Pets:GetChildren()) do
+                              if v.ClassName == "TextButton" and v.Equipped.Visible then
+                                  table.insert(Returntable, v.Name)
+                              end
+                          end
+                      return Returntable
+                  end
+  
+                  local Closestcoin = tonumber(425)
+                  function BringCoins()
+                      local Returntable = {}
+                
+                      local ListCoins = game.workspace['__THINGS']['__REMOTES']["get coins"]:InvokeServer({})[1]
+                      for i,v in pairs(ListCoins) do
+                          if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.p).Magnitude < Closestcoin then
+                              local Coin = v
+                              Coin["index"] = i
+                              table.insert(Returntable, Coin)
+                              Closestcoin = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.p).Magnitude
+                          end
+                      end
+                      return Returntable
+                  end
+  
+                  local petthingy = FindPets()
+  
+                  local cointhiny = BringCoins()
+  
+                  for i = 1, #cointhiny do
+                      coroutine.wrap(function()
+                          FarmCoins(cointhiny[i].index, petthingy[i%#petthingy+1])
+                      end)()
+                  end
+              end)
+          end
+      end
+     end)
+
+spawn(function()
+    while task.wait() do
+        if getgenv().FarmGems then 
+            for i,v in pairs(FindPlayersPets) do
+                pcall(function()
+                    FarmCoins4(FindGems(), v)
+                end)
+                 end
+        function FindGems()
+            for i,v in pairs(game:GetService("Workspace")["__THINGS"].Coins:GetDescendants()) do
+                if v:IsA"MeshPart" then
+                    if v.MeshId == 'rbxassetid://7041620873' or v.MeshId == 'rbxassetid://7041621431' or v.MeshId == 'rbxassetid://7041621329' or v.MeshId == 'rbxassetid://7041620873' then
+                        a = v.Parent.Name
+                    end
+                end
+            end
+            return a
+        end
+    end
+end
+end)
 
 
 
@@ -1328,46 +1389,8 @@ end)
           end
       end
      end)
-  local TabFF = win:Tab("Fast Farm")
-  TabFF:Toggle("Fast Farm", function(t)
-      if t then
-          getgenv().PromptGuioof:AddText("Fast Farm = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-      else
-          getgenv().PromptGuioof:AddText("Fast Farm = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-      end
-      fastoption = t
-end)
-
-  TabFF:Toggle("Fast AutoCollect Coins", function(t)
-      if t then
-          getgenv().PromptGuioof:AddText("Fast Farm = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-      else
-          getgenv().PromptGuioof:AddText("Fast Farm = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-      end
-      fastoption = t
-	        if t then
-          getgenv().PromptGuioof:AddText("AutoCollect Coins = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-      else
-          getgenv().PromptGuioof:AddText("AutoCollect Coins = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-      end
-      SettingsTable.FastColect = t
-      while SettingsTable.FastColect do task.wait()
-      pcall(function()
-          local ohTable1 = {[1] = {}}
-          for i,v in pairs(game.workspace['__THINGS'].Orbs:GetChildren()) do
-              ohTable1[1][i] = v.Name
-          end
-          game.workspace['__THINGS']['__REMOTES']["claim orbs"]:FireServer(ohTable1)
-  
-      end)
-  end
-end)
+  local TabFF = win:Tab("Fast")
   TabBuy:Toggle("Auto Redeam Rank Rewards", function(t)
-                  if t then
-                  getgenv().PromptGuioof:AddText("Redeam Rank Rewards = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-              else
-                  getgenv().PromptGuioof:AddText("Redeam Rank Rewards = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-              end
          SettingsTable.RankRew = t
                          while wait(.3) do
                              if SettingsTable.RankRew then
@@ -1472,8 +1495,9 @@ end)
 TabUi:Button("Teleport", function()
     game:GetService("Players").LocalPlayer.PlayerGui.Teleport.Enabled = true
 end)
-
-
+TabUi:Button("Merchant", function()
+	game:GetService("Players").LocalPlayer.PlayerGui.Merchant.Enabled = true
+end)
 
 
 
