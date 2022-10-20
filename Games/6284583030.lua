@@ -135,16 +135,6 @@ TabFarm:Toggle("Auto Farm - Nearest", function(value)
 getgenv().FarmNearest = value
 end)
 
-
-TabFarm:Toggle("Auto Farm - MultiTarget", function(t)
-          if t then
-              getgenv().PromptGuioof:AddText("MultiTarget = true", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          else
-              getgenv().PromptGuioof:AddText("MultiTarget = false", Enum.Font.Code, Color3.fromRGB(200, 200, 200))
-          end
-          SettingsTable.MultiTarget = t
-end)
-
          spawn(function()
             while task.wait(.7) do
                 if game:GetService("Workspace")["__THINGS"].Orbs:FindFirstChildOfClass("Part") and (FarmCoinHealth 
