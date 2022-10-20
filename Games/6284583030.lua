@@ -293,29 +293,6 @@ TabBuy:Button("Get All Gamepasses", function()
     pass.Owns = function() return true end
 end)
 
-TabBuy:Toggle("No Egg Animation", function(value)
-            if delanimation == true then 
-        getsenv(ScriptPathh).OpenEgg = function() return end 
-    else
-        getsenv(ScriptPathh).OpenEgg = OldFunction
-    end
-end)
-
-         spawn(function()
-          while task.wait(.5) do
-              if worldhop then
-                  pcall(function()
-                      for i,v in pairs(check["worldsel"].Value) do
-                          GameLibrary.WorldCmds.Load(v)
-                          wait(setTime or 5)
-                      end
-                  end)
-              else
-              end
-          end
-         end)
-
-
 TabBuy:TextBox("Type in Wait Time", function(t)
 setTime = t
 end)
@@ -341,12 +318,6 @@ end)
 
   local DiamondsMasteryList = {"Diamonds", "Tiny Diamonds"}
   local MasteryIndex = {"All", "Coins Piles Mastery", "Crates Mastery", "Chests Mastery", "Presents Mastery", "Vaults & Safes Mastery", "Diamonds Mastery"}
-TabFarm:Toggle("Auto Farm Mastery", function(t)
-    Mastery = t
-end)
-TabFarm:Dropdown("Mastery List", MasteryIndex, function(v)
-   hewoUwU = v
-end)
 
   spawn(function()
       while task.wait(FarmingSpeed) do
@@ -1488,8 +1459,783 @@ end)
 TabUi:Button("Merchant", function()
 	game:GetService("Players").LocalPlayer.PlayerGui.Merchant.Enabled = true
 end)
+local TabAB = win:Tab("Boost")
+
+TabAB:Toggle("Auto Use Triple Damage Boost", function(state)
+         if state then
+             function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+     
+     local args = {
+         [1] = {
+             [1] = "Triple Damage"
+         }
+     }
+     
+     workspace.__THINGS.__REMOTES:FindFirstChild("activate boost"):FireServer(unpack(args))
+     
+             getgenv().hahj = true;
+             
+             while wait(1200) do
+                 if getgenv().hahj == true then
+             function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+     
+     local args = {
+         [1] = {
+             [1] = "Triple Damage"
+         }
+     }
+     
+     workspace.__THINGS.__REMOTES:FindFirstChild("activate boost"):FireServer(unpack(args))
+     
+             end
+             end
+                 else
+                     function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+     
+     local args = {
+         [1] = {
+             [1] = "Triple Damage"
+         }
+     }
+     
+     workspace.__THINGS.__REMOTES:FindFirstChild("activate boost"):FireServer(unpack(args))
+     
+                     getgenv().hahj = false;
+                     
+                     while wait(1200) do
+                         if getgenv().hahj == true then
+                     function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+                     
+     local args = {
+         [1] = {
+             [1] = "Triple Damage"
+         }
+     }
+     
+     workspace.__THINGS.__REMOTES:FindFirstChild("activate boost"):FireServer(unpack(args))
+     
+                     end
+                     end
+                 end
+     end)
+     
+TabAB:Toggle("Auto Use Triple Coin Boost", function(state)
+             if state then
+              function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+  
+              local args = {
+                  [1] = {
+                      [1] = "Triple Coins",
+                  },
+              }
+              
+              workspace["__THINGS"]["__REMOTES"]["activate boost"]:FireServer(unpack(args))
+              getgenv().hahj = true;
+              
+              while wait(1200) do
+                  if getgenv().hahj == true then
+              function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+              
+              local args = {
+                  [1] = {
+                      [1] = "Triple Coins",
+                  },
+              }
+              
+              workspace["__THINGS"]["__REMOTES"]["activate boost"]:FireServer(unpack(args))
+              end
+              end
+                     else
+                      function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+  
+                      local args = {
+                          [1] = {
+                              [1] = "Triple Coins",
+                          },
+                      }
+                      
+                      workspace["__THINGS"]["__REMOTES"]["activate boost"]:FireServer(unpack(args))
+                      getgenv().hahj = false;
+                      
+                      while wait(1200) do
+                          if getgenv().hahj == true then
+                      function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+                      
+                      local args = {
+                          [1] = {
+                              [1] = "Triple Coins",
+                          },
+                      }
+                      
+                      workspace["__THINGS"]["__REMOTES"]["activate boost"]:FireServer(unpack(args))
+                      end
+                      end
+                     end
+end)
 
 
+  local pathToScript = game.Players.LocalPlayer.PlayerScripts.Scripts.Game['Open Eggs']
+  local oldFunc = getsenv(pathToScript).OpenEgg
+
+local TabEgg = win:Tab("Egg(Fixed)")
+        local EggTable = {'All'} 
+         for i,v in pairs(game.ReplicatedStorage.Game.Eggs:GetChildren()) do 
+             for i2,v2 in pairs(v:GetChildren()) do 
+                 table.insert(EggTable, v2.Name)
+             end 
+         end
+  
+local ScriptPathh = game.Players.LocalPlayer.PlayerScripts.Scripts.Game['Open Eggs']
+local OldFunction = getsenv(ScriptPathh).OpenEgg
+  TabEgg:Toggle("Remove egg opening animation", function(delanimation)
+            if delanimation == true then 
+        getsenv(ScriptPathh).OpenEgg = function() return end 
+    else
+        getsenv(ScriptPathh).OpenEgg = OldFunction
+    end
+end)
+
+TabEgg:Dropdown("Select Egg", EggTable, function() return end)
+
+         game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Frame.Main.Pets.ChildAdded:Connect(function(child)
+          if child.Name ~= "Empty" then
+              current = current + 1
+          end
+      end)
+
+      spawn(function()
+          while task.wait() do
+              pcall(function()
+                  EggCount:Refresh("Eggs Opened: "..current)
+              end)
+          end
+         end)
+
+
+TabEgg:Toggle("Open Egg", function(startegss)
+         start = startegss
+         while start do task.wait()
+          for i,v in pairs(check["SelEg"].Value) do
+              if v == "All" then
+                  for b,a in pairs(game.ReplicatedStorage.Game.Eggs:GetChildren()) do 
+                      for i2,v2 in pairs(a:GetChildren()) do 
+                          local args = {
+                              [1] = {
+                                  [1] = v2.Name,
+                                  [2] = start2
+                              }
+                           }
+                           workspace.__THINGS.__REMOTES:FindFirstChild("buy egg"):InvokeServer(unpack(args))
+          
+                      end 
+                  end          
+              else
+                  local args = {
+                      [1] = {
+                          [1] = v,
+                          [2] = start2
+                      }
+                   }
+                   workspace.__THINGS.__REMOTES:FindFirstChild("buy egg"):InvokeServer(unpack(args))
+            
+              end
+          end
+         end
+end)
+
+
+ TabEgg:Toggle("Triple Open Eggs (Gamepass Needed)", function(t)
+     start2 = t
+ end)
+
+ TabEgg:Toggle("Auto Open inv", function(t)
+            open_5_min_inv = t
+            while open_5_min_inv do task.wait()
+                game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Enabled = true 
+                wait(.8)
+                game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Enabled = false
+                wait(Sel_Time_Open_Inv*60) -- this is 5 min
+            end
+ end)
+
+TabEgg:Slider("Select Time (Auto Open Inv)", 1, 10, 2, function(v)
+            Sel_Time_Open_Inv = v
+end)
+
+ TabEgg:Toggle("Auto Use Super Luck!", function(v)
+    function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+     UseSperLuck = v
+     while UseSperLuck do task.wait()
+    local args = {
+        [1] = {
+            [1] = "Super Lucky",
+        },
+    }
+    
+    workspace["__THINGS"]["__REMOTES"]["activate boost"]:FireServer(unpack(args))
+    task.wait(1199)
+     end
+ end)
+
+ TabEgg:Toggle("Auto Use ULTRA Luck!", function(v)
+       function getNil(name,class) for _,v in pairs(getnilinstances())do if v.ClassName==class and v.Name==name then return v;end end end
+        UseUltraLuck = v
+        while UseUltraLuck do task.wait()
+       local args = {
+           [1] = {
+               [1] = "Ultra Lucky",
+           },
+       }
+       
+       workspace["__THINGS"]["__REMOTES"]["activate boost"]:FireServer(unpack(args))
+       task.wait(899)
+        end
+ end)
+
+TabEgg:Label("Upgrade")
+
+
+ TabEgg:Toggle("Auto Upgrade Pet Storage", function(t)
+      getgenv().PetStorage = t
+      while wait() do
+          if getgenv().PetStorage == true then
+      local args = {
+          [1] = {
+              [1] = "Pet Storage"
+          }
+      }
+      workspace.__THINGS.__REMOTES:FindFirstChild("buy upgrade"):InvokeServer(unpack(args))
+      
+          end
+      end
+ end)
+
+ TabEgg:Toggle("Auto Upgrade walkspeed", function(t)
+          getgenv().walkspeed = t
+          while wait() do
+              if getgenv().walkspeed == true then
+  
+  local args = {
+      [1] = {
+          [1] = "Player Walkspeed"
+      }
+  }
+  
+  workspace.__THINGS.__REMOTES:FindFirstChild("buy upgrade"):InvokeServer(unpack(args))
+  
+              end
+          end
+ end)
+
+  TabEgg:Toggle("Auto Upgrade Orbs Reach", function(t)
+              getgenv().walksorbreachpeed = t
+              while wait() do
+                  if getgenv().orbreach == true then
+      
+  local args = {
+      [1] = {
+          [1] = "Orb Pickup Distance"
+      }
+  }
+  
+  workspace.__THINGS.__REMOTES:FindFirstChild("buy upgrade"):InvokeServer(unpack(args))
+  
+                  end
+              end
+ end)
+
+  TabEgg:Toggle("Auto Upgrade More Diamonds", function(t)
+                  getgenv().morediamonds = t
+                  while wait() do
+                      if getgenv().morediamonds == true then
+  local args = {
+      [1] = {
+          [1] = "More Diamonds"
+      }
+  }
+  
+  workspace.__THINGS.__REMOTES:FindFirstChild("buy upgrade"):InvokeServer(unpack(args))
+  
+                      end
+                  end
+                  end)
+  local Network = GameLibrary.Network
+  local Run_Service = game:GetService("RunService")
+  local rs = Run_Service.RenderStepped
+  local IDToName = {}
+  local NameToID = {}
+  local PettoRarity = {}
+  local RarityTable = {}
+  local PetNamesTable = {}
+  local PetNamesTable = {}
+  
+  local IDToName = {}
+  local NameToID = {}
+  for i,v in pairs(Library.Directory.Pets ) do
+      IDToName[i] = v.name
+      NameToID[v.name] = i
+  end   
+  
+  function GetMyPets()
+         local returntable = {}
+         for i,v in pairs(GameLibrary.Save.Get().Pets) do
+             if v.e then 
+                 table.insert(returntable, v.uid)
+             end
+         end
+         return returntable
+      end
+  
+  
+  
+  function GetPets()
+      local MyPets = {}
+      for i,v in pairs(GameLibrary.Save.Get().Pets) do
+              local ThingyThingyTempTypeThing = (v.g and 'Gold') or (v.r and 'Rainbow') or (v.dm and 'Dark Matter') or 'Normal'
+              local TempString = ThingyThingyTempTypeThing .. IDToName[v.id]
+              if MyPets[TempString] then
+                  table.insert(MyPets[TempString], v.uid)
+              else
+                  MyPets[TempString] = {}
+                  table.insert(MyPets[TempString], v.uid)
+              end
+          end
+      return MyPets
+  end
+  
+  for i,v in pairs(GameLibrary.Directory.Pets) do
+      IDToName[i] = v.name
+      NameToID[v.name] = i
+      PettoRarity[i] = v.rarity
+      if not table.find(RarityTable, v.rarity) then
+          table.insert(RarityTable, v.rarity)
+      end
+      table.insert(PetNamesTable, v.name)
+  end
+
+local TabPets = win:Tab("Pets")
+
+TabPets:Slider("Select pet amount", 0, 6, 1, function(countcombinefunc)
+          if countcombinefunc then
+          getgenv().CountCombineFunc1 = countcombinefunc
+      end
+      print("Selected Combine Count: ", getgenv().CountCombineFunc1)
+end)
+
+TabPets:Toggle("Auto golden", function(togglegoldfunc)
+  if togglegoldfunc == true then
+      getgenv().ToggleGold = true
+  elseif togglegoldfunc == false then
+      getgenv().ToggleGold = false
+  end
+end)
+TabPets:Toggle("Auto rainbow", function(toggleraibowfunc)
+  if toggleraibowfunc == true then
+      getgenv().ToggleRainbow = true
+  elseif toggleraibowfunc == false then
+      getgenv().ToggleRainbow = false
+  end
+end)
+TabPets:Toggle("Enable Auto Golden / Rainbow", function(autocombinefunc)
+      
+      if autocombinefunc == true then
+         getgenv().AutoCom = true
+      elseif autocombinefunc == false then
+          getgenv().AutoCom = false
+      end
+      
+      while wait() and getgenv().AutoCom do
+          for i, v in pairs(GetPets()) do
+              if #v >= getgenv().CountCombineFunc1 and getgenv().AutoCom then
+                  if string.find(i, "Normal") and getgenv().AutoCom and getgenv().ToggleGold then
+                      local Args = {}
+                      for eeeee = 1, getgenv().CountCombineFunc1 do
+                          Args[#Args+1] = v[#Args+1]
+                      end
+                      Library.Network.Invoke("use golden machine", Args)
+      
+                  elseif string.find(i, "Gold") and getgenv().AutoCom and getgenv().ToggleRainbow then
+                      local Args = {}
+                      for eeeee = 1, getgenv().CountCombineFunc1 do
+                          Args[#Args+1] = v[#Args+1]
+                      end
+                      Library.Network.Invoke("use rainbow machine", Args)
+                  end
+              end
+          end
+      end
+      
+      spawn(function()
+          while wait() and getgenv().AutoCom do
+              if not getgenv().ToggleGold and not getgenv().ToggleRainbow then 
+                  repeat wait(1) until getgenv().ToggleGold or getgenv().ToggleRainbow
+              end
+              if tonumber(getgenv().CountCombineFunc1) == nil then
+                  repeat wait() until tonumber(getgenv().CountCombineFunc1) ~= nil
+              end
+              for i, v in pairs(GetPets()) do
+                  if #v >= getgenv().CountCombineFunc1 and (getgenv().ToggleGold or getgenv().ToggleRainbow) then
+                      if string.find(i, "Normal") and getgenv().ToggleGold then
+                          local Args = {}
+                          for eeeee = 1, getgenv().CountCombineFunc1 do
+                              Args[#Args+1] = v[#Args+1]
+                          end
+                         GameLibrary.Network.Invoke("use golden machine", Args)
+                     elseif string.find(i, "Gold") and getgenv().ToggleRainbow then
+                          local Args = {}
+                          for eeeee = 1, getgenv().CountCombineFunc1 do
+                              Args[#Args+1] = v[#Args+1]
+                         end
+                      GameLibrary.Network.Invoke("use rainbow machine", Args)
+                      end
+                  end
+              end
+          end
+      end)
+end)
+
+
+    local FusePets_Table = {"All"}
+    for i,v in pairs(Library.Directory.Pets) do
+        table.insert(FusePets_Table, v.name)
+    end
+
+TabPets:Dropdown("Select Pets Fuse", FusePets_Table, function(t)
+
+end)
+
+ local TypeListFuse = {"Normal"; "Gold"; "Rainbow"; "Dark Matter";}
+
+TabPets:Dropdown("Pet Rarity Type of", TypeListFuse, function(t)
+
+end)
+
+TabPets:Slider("Amount Of Pets To Fuse", 3, 12, 3, function(t)
+   FusePetsAmmount = t
+end)
+
+
+TabPets:Toggle("Auto Fuse", function(t)
+    StartAutoFuse = t
+end)
+
+TabPets:Toggle("Allow Hardcore Pets", function(t)
+    AllowHCPetsFuse = t
+end)
+
+  function hasenchant(tbl, value)
+    for i,v in pairs(tbl) do
+        if v == value then
+            return true 
+        end
+    end
+    return false
+end
+
+  spawn(function()
+    while task.wait() do
+        if StartAutoFuse then
+            pcall(function()
+
+                
+                -- local petsammount = FusePetsAmmount
+                -- local PetId = -1
+                
+            for i2pog,v2pog in pairs(checklists["selFusePet"].Value) do
+                if v2pog == "All" then
+                    local Library = require(game:GetService("ReplicatedStorage"):WaitForChild("Framework"):WaitForChild("Library"))
+                    local NameID = {}
+                    for i,v in pairs(Library.Directory.Pets) do
+                        NameID[i] = v.name
+                    end
+                        
+                    
+                        local selectedpets = {}
+                            for i,v in pairs(Library.Save.Get().Pets) do
+                            local prarity = Library.PetCmds.Get(v.uid)
+                                            local PetRaito = (v.g and 'Gold') or (v.r and 'Rainbow') or (v.dm and 'Dark Matter') or 'Normal'
+                                            local PetRaito2 = (v.g) or (v.r) or (v.dm)
+                                            local PetRaito3 = v.g or v.r or v.dm
+                    
+                                            local PetSting = PetRaito .. NameID[v.id]
+                                            if selectedpets[PetSting] then
+                                                table.insert(selectedpets[PetSting], v.uid)
+                                            else
+                                                selectedpets[PetSting] = {}
+                                                table.insert(selectedpets[PetSting], v.uid)
+                                            end
+                                end
+                    
+                            -- local PetRaito = 'Gold' or 'Rainbow' or 'Dark Matter' or 'Normal'
+                            local PP
+                            for i2,v2 in pairs(selectedpets) do
+                                PP = {}
+                                if string.find(i2, "Rainbow") or string.find(i2, "Gold") or string.find(i2, "Dark Matter") or string.find(i2, "Normal") then
+                                    for i = 1,FusePetsAmmount do
+                                        PP[#PP+1] = v2[#PP+1]
+                                    end
+                                    if (#PP == FusePetsAmmount) then
+                                        workspace.__THINGS.__REMOTES["fuse pets"]:InvokeServer({PP})
+                                    end
+                                    end
+                            end
+
+                else
+                    for i69,v69 in pairs(Library.Directory.Pets) do
+                        if v2pog == v69.name then
+                            local selectedpets = {}
+                        for i,v in pairs(Library.Save.Get().Pets) do
+                        local prarity = Library.PetCmds.Get(v.uid)
+                            if not (#selectedpets == FusePetsAmmount) then
+                                if (v.id == (i69)) then
+                                    for i2, v2 in pairs(checklists["prto"].Value) do
+                                        if AllowHCPetsFuse then
+                                            if (v2 == "Normal" and not prarity.r and not prarity.g and not prarity.dm and prarity.hc ) or (prarity.r and v2 == "Rainbow") or (prarity.g and v2 == "Gold") or (prarity.dm and v2 == "Dark Matter") then
+                                                table.insert(selectedpets, v.uid)
+                                            end
+                                        end
+                                        
+                                        if (v2 == "Normal" and not prarity.r and not prarity.g and not prarity.dm and not prarity.hc ) or (prarity.r and v2 == "Rainbow") or (prarity.g and v2 == "Gold") or (prarity.dm and v2 == "Dark Matter") then
+                                            table.insert(selectedpets, v.uid)
+                                        end
+
+                                    end
+                                    end
+                                end
+                            end
+                            if (#selectedpets == FusePetsAmmount) then
+                                workspace.__THINGS.__REMOTES["fuse pets"]:InvokeServer({selectedpets})
+                            end
+                            ---
+                        end
+                    end
+                end
+            end
+            end)
+        end
+    end
+  end)
+
+
+TabPets:Toggle("Auto Claim Dark Matter Pets", function(autoclaimdark)
+
+  if autoclaimdark == true then
+      _G.AutoClaimDarkMatter = true
+  elseif autoclaimdark == false then
+      _G.AutoClaimDarkMatter = false
+  end
+      
+  spawn(function()
+      while task.wait() and _G.AutoClaimDarkMatter do
+          for i,v in pairs(GameLibrary.Save.Get().DarkMatterQueue) do
+              if math.floor(v.readyTime - os.time()) < 0 then
+                  workspace.__THINGS.__REMOTES["redeem dark matter pet"]:InvokeServer({[1] = i})
+              end
+              end
+          task.wait(15)
+      end
+  end)
+end)
+
+TabPets:Dropdown("Select Pet DarkMatter", FusePets_Table, function(t)
+
+end)
+
+TabPets:Slider("Pet Amount DarkMatter", 1, 6, 1, function(t)
+    SelectDMAmount = t
+end)
+
+TabPets:Toggle("Auto Convert DarkMatter", function(autoclaimdark)
+    StartDarkMatterConverter = t
+end)
+
+ spawn(function()
+    while task.wait() do
+        if StartDarkMatterConverter then
+            pcall(function()
+                local PetsTable = {}
+                local PetId = -1
+                
+                for i4, v4 in pairs(checklists["selSPDmatter"].Value) do
+                for i6,v6 in pairs(lib.Directory.Pets) do
+                    if v4 == v6.name then
+              
+                for i,v in pairs(lib.Save.Get().Pets) do
+                    local prarity = lib.PetCmds.Get(v.uid)
+                    if not (#PetsTable == (SelectDMAmount)) then
+                        if v.id == i6 then
+                            if prarity.r then
+                                table.insert(PetsTable, v.uid)
+                            end
+                        end
+                    end
+                end
+                ---
+              end
+              end
+              end
+                
+                workspace.__THINGS.__REMOTES["convert to dark matter"]:InvokeServer({PetsTable})
+            end)
+        end
+    end
+  end)
+  
+
+
+
+   
+
+--   local enchants = {
+--       'Magnet',
+--       'Royalty',
+--       'Glittering',
+--       'Tech Coins',
+--       'Fantasy Coins',
+--       'Rainbow Coins',
+--       'Coins',
+--       'Teamwork',
+--       'Diamonds',
+--       'Strength',
+--       'Chests',
+--       'Presents',
+--       'Agility',
+--       'Charm'
+--   }
+
+local enchantis = {}
+for i,v in pairs(game:GetService("ReplicatedStorage").Directory.Powers:GetChildren()) do
+    local powernames = string.gsub(v.Name, "Power -- ", "")
+    table.insert(enchantis, powernames)
+end
+
+
+TabPets:Toggle("Start Enchanting", function(t)
+      StartChant = t 
+end)
+
+
+local enchants = {
+    'Magnet',
+    'Royalty',
+    'Glittering',
+    'Tech Coins',
+    'Fantasy Coins',
+    'Rainbow Coins',
+    'Coins',
+    'Teamwork',
+    'Diamonds',
+    'Strength',
+    'Chests',
+    'Presents',
+    'Agility',
+    'Charm',
+}
+
+
+TabFarm:Dropdown("Select Enchant", enchantis, function(t)
+  PowerName = t 
+end)
+
+TabFarm:Slider("Select Enchant Level", 1, 6, 1, function(t)
+  PowerLevel = t 
+end)
+
+function hasInput(tbl, value)
+  for i,v in pairs(tbl) do
+      if v == value then
+          return true
+      end
+  end
+  return false 
+end
+
+function hasValue(tbl, value)
+  for i,v in pairs(tbl) do
+      if i == value then
+          return true 
+      end
+  end
+return false
+end
+
+spawn(function()
+  while task.wait() do
+      if StartChant then
+          pcall(function()
+              if PowerName == "Royalty" or PowerName == "Magnet" or PowerName == "Charm" or PowerName == "Teamwork" or PowerName == "Glittering" then
+              for i,v in pairs(lib.Save.Get().Pets) do
+                  local getpvalue = lib.PetCmds.Get(v.uid)
+                  if getpvalue.e then
+                      if hasValue(getpvalue, "powers") then
+                      for i2,v2 in pairs(getpvalue.powers) do
+                          if hasInput(v2, PowerName)  then
+                          else
+                              workspace.__THINGS.__REMOTES["enchant pet"]:InvokeServer({v.uid})
+                          end
+                      end
+                      else
+                          workspace.__THINGS.__REMOTES["enchant pet"]:InvokeServer({v.uid})
+                      end
+                  end
+              end
+              else
+              for i,v in pairs(lib.Save.Get().Pets) do
+                  local getpvalue = lib.PetCmds.Get(v.uid)
+                  if getpvalue.e then
+                      if hasValue(getpvalue, "powers") then
+                      for i2,v2 in pairs(getpvalue.powers) do
+                          if hasInput(v2, PowerLevel) and hasInput(v2, PowerName)  then --hasInput(v, "Strength") and
+                          else
+                              workspace.__THINGS.__REMOTES["enchant pet"]:InvokeServer({v.uid})
+                          end
+                      end
+                      else
+                          workspace.__THINGS.__REMOTES["enchant pet"]:InvokeServer({v.uid})
+                      end
+                  end
+              end 
+              end
+          end) 
+      end
+  end
+end)
+
+
+TabPets:TextBox("Enter New Pet Name", function(t)
+    selpname = t
+end)
+
+
+TabFarm:Button("Rename All Pets (ONLY CLICK ONCE!)", function()
+    spawn(function()
+        pcall(function()
+		ArgetnarLib:Notify("System", "Renaming Pets \n please be patient!")
+        end)
+end)
+
+    for i,v in pairs(Library.Save.Get().Pets) do
+        if v.nk ~= selpname then
+            -- print(v.uid)
+            local scriptEnvironment = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.Scripts.GUIs.Rename)
+            scriptEnvironment.Rename(v.uid, selpname)
+            task.wait(.87)
+        end
+    end
+   end)
+  
+   local v1 = {};
+   for i,v in pairs(Library.Directory.Pets) do
+    for i,v in pairs(v) do
+        if i == "name" then
+            table.insert(v1, v)
+        end
+    end
+end
+  
+TabPets:Dropdown("Select Pet", v1, function(petname)
+  PetNamehere = petname
+end)
 
 
 
@@ -1523,10 +2269,8 @@ TabMisc:Button("Destroy", function()
 end)
 local TabCredit = win:Tab("Credits")
 TabCredit:Label("Hub by Argetnar & Doku & Brinen")
-local LabelRef = TabCredit:Label("v1")
-wait(10)
-LabelRef:Refresh("v2")
-TabCredit:Label("AutoFarm has been fixed, a patch is being developed")
+local LabelRef = TabCredit:Label("v2.8")
+TabCredit:Label("AutoFarm has been patched")
 
       for i,imaegg in pairs(game:GetService("ReplicatedStorage").Game.Coins:GetChildren()) do 
           for nu,hwe in pairs(imaegg:GetChildren()) do
@@ -1651,4 +2395,4 @@ TabCredit:Label("AutoFarm has been fixed, a patch is being developed")
 
 ArgetnarLib:Notify("Script", "Was Loaded!")
 wait(10)
-ArgetnarLib:Notify("Script", "AutoFarm has been fixed, a patch is being developed")
+ArgetnarLib:Notify("Script", "AutoFarm has been patched")
